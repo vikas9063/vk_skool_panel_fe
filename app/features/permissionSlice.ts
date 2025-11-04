@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUserDetails } from "./permissionThunks";
+import { PermissionState } from "../types/user";
 
-// ✅ Type for Permission State
-export type PermissionState = {
-    permissions: string[];
-    loading: boolean;
-    error: string | null;
-};
+
 
 const initialState: PermissionState = {
-    permissions: [],
-    loading: false,
-    error: null,
+  permissions: [],
+  loading: false,
+  error: null,
+  loggedInUserDetails: null,
 };
 
 const permissionSlice = createSlice({
@@ -37,6 +34,8 @@ const permissionSlice = createSlice({
                 state.loading = false;
 
                 const user = action.payload.userDetails;
+
+                state.loggedInUserDetails = user; 
 
                 // ✅ Extract and merge role + custom permissions
                 const rolePerms = user.role?.permissions?.map((p) => p.permissionName) || [];

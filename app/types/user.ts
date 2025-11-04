@@ -47,3 +47,10 @@ export type UserDetails = {
   accountNonLocked: boolean;
 };
 
+export type PermissionState = {
+    permissions: string[];
+    loading: boolean;
+    error: string | null;
+    loggedInUserDetails: UserDetails | null;
+};
+

@@ -18,6 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export function NavMain({
   items,
@@ -59,15 +60,15 @@ export function NavMain({
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild
                         className={cn(
-                          "w-full justify-start text-sm font-medium px-3 py-2 rounded-md transition-colors duration-150",
+                          "w-full justify-start text-sm font-medium px-3 py-2 transition-colors duration-150",
                           subItem.isActive
-                            ? "bg-accent-foreground text-accent hover:bg-ring"
-                            : "text-ring hover:text-accent-foreground hover:bg-ring"
+                            ? "bg-primary text-secondary hover:bg-primary/90 hover:text-secondary"
+                            : "text-secondary-foreground hover:text-accent-foreground hover:bg-accent"
                         )}
                       >
-                        <a href={subItem.url}>
+                        <Link href={subItem.url}>
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

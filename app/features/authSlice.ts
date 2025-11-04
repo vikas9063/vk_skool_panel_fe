@@ -27,8 +27,11 @@ const authSlice = createSlice({
             state.accessToken = null;
             state.refreshToken = null;
             Cookies.remove("accessToken");
+            console.log("Logging out, removing tokens from cookies");
             Cookies.remove("refreshToken");
+            console.log("Logging out, removing refresh tokens from cookies");
             Cookies.remove("username");
+            console.log("Logging out, removing username from cookies");
         },
     },
     extraReducers: (builder) => {

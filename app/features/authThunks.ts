@@ -1,6 +1,7 @@
 import axiosInstance from "@/lib/AxiosInstance";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { loginPayload } from "../types/user";
 
 
 
