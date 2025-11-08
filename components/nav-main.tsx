@@ -66,7 +66,7 @@ export function NavMain({
                             : "text-secondary-foreground hover:text-accent-foreground hover:bg-accent"
                         )}
                       >
-                        <Link href={subItem.url}>
+                        <Link href={item.url+subItem.url}>
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>

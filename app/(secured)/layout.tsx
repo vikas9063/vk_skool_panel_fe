@@ -20,39 +20,43 @@ import ProfileIcon from "../components/profile/ProfileIcon";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        {/* Suspense boundary for PermissionInitializer */}
-        <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+
           <PermissionInitializer />
-        </Suspense>
 
-        <header className="shadow flex h-16 shrink-0 items-center gap-2 justify-between">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-          <div className="lg:mr-10">
-            <ProfileIcon isNav={true} />
-          </div>
-        </header>
+          {/* This part only shows once PermissionInitializer finishes */}
+          <header className="shadow flex h-16 shrink-0 items-center gap-2 justify-between">
+            <div className="flex items-center gap-2 px-4">
+              <SidebarTrigger className="-ml-1" />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem className="hidden md:block">
+                    <BreadcrumbLink href="#">
+                      Building Your Application
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator className="hidden md:block" />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+            <div className="lg:mr-10">
+              <ProfileIcon isNav={true} />
+            </div>
+          </header>
 
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
-      </SidebarInset>
-    </SidebarProvider>
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 bg-white">
+            {children}
+          </div>
+
+        </SidebarInset>
+      </SidebarProvider>
+    </Suspense>
   );
 }

@@ -13,7 +13,6 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks"
 import { loginUser } from "@/app/features/authThunks"
-import { navigate } from "next/dist/client/components/segment-cache-impl/navigation";
 import { useRouter } from "next/navigation";
 
 

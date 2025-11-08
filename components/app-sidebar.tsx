@@ -10,6 +10,7 @@ import {
   GalleryVerticalEnd,
   Map,
   PieChart,
+  School2,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -17,7 +18,6 @@ import {
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -25,36 +25,27 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { TeamLogo } from "./TeamLogo"
 
 // This is sample data.
 const data = {
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
+  team:
+  {
+    name: "VK Skool",
+    logo: GalleryVerticalEnd,
+    plan: "pannel",
+  }
+  ,
   navMain: [
     {
       title: "Users",
-      url: "#",
+      url: "/user",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
           title: "Create User",
-          url: "/user/create-user",
+          url: "/create-user",
           isActive: true,
         },
         {
@@ -132,6 +123,25 @@ const data = {
         },
       ],
     },
+    {
+      title: "Institutions",
+      url: "/institutions",
+      icon: School2,
+      items: [
+        {
+          title: "All Institutions",
+          url: "/all-institutions",
+        },
+        {
+          title: "Create Institution",
+          url: "/create-institution",
+        },
+        {
+          title: "Update Institution",
+          url: "/update-institution",
+        }
+      ],
+    },
   ],
   projects: [
     {
@@ -156,7 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamLogo team={data.team} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

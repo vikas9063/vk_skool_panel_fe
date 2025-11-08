@@ -25,13 +25,20 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
+        if (error.status === 403 && error.response?.data?.message === "Anonymous user cannot access this resource.") {
+            console.log("Anonymous user access detected. Redirecting to login...");
+            Cookies.remove("accessToken");
+            Cookies.remove("refreshToken");
+            window.location.href = "/login";
+            return Promise.reject("Anonymous user cannot access this resource.");
+        }
         if (error.status === 401 && error.response?.data?.message === "Token expired") {
             console.log("Access token expired. Refreshing...");
             try {
                 const refreshToken = Cookies.get("refreshToken");
                 console.log("Refresh Token: ", refreshToken);
-                
-                if (!refreshToken){
+
+                if (!refreshToken) {
                     window.location.href = "/login";
                     return Promise.reject("No refresh token available");
                 }
