@@ -13,6 +13,8 @@ import {
   School2,
   Settings2,
   SquareTerminal,
+  User,
+  Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -40,7 +42,7 @@ const data = {
     {
       title: "Users",
       url: "/user",
-      icon: SquareTerminal,
+      icon: Users,
       isActive: true,
       items: [
         {

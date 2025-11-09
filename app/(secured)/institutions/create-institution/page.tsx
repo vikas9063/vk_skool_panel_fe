@@ -25,8 +25,9 @@ const formSchema = z.object({
   academicYearStartMonth: z.number().min(1).max(12),
   academicYearEndMonth: z.number().min(1).max(12),
   instituteCredentials: z.object({
-    email: z.string().email("Enter a valid admin email"),
+    email: z.email("Enter a valid admin email"),
     password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string().min(6, "Confirm your password"),
   }),
 })
 
@@ -51,7 +52,7 @@ const CreateInstitutePage = () => {
       email: "",
       academicYearStartMonth: 4,
       academicYearEndMonth: 3,
-      instituteCredentials: { email: "", password: "" },
+      instituteCredentials: { email: "", password: "", confirmPassword: "" },
     },
   })
 
@@ -68,12 +69,11 @@ const CreateInstitutePage = () => {
   }
 
   return (
-    <div className="w-full min-h-[90vh] pt-2 ">
+    <div className="w-full min-h-[90vh] pt-3">
       <PageHeading title="Create New Institution" />
-      <div className="w-full min-h-[90vh] py-6 flex flex-col items-center">
-        <div className="w-[80%] bg-white rounded-md shadow-md p-8 ">
+      <div className="w-full min-h-[90vh] flex flex-col items-center">
+        <div className="w-[80%] rounded-md p-8 ">
           <h2 className="text-2xl font-semibold text-center mb-6">Institute Registration</h2>
-
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Basic Info */}
@@ -256,6 +256,19 @@ const CreateInstitutePage = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" placeholder="********" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="instituteCredentials.confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
                         <Input type="password" placeholder="********" {...field} />
                       </FormControl>
