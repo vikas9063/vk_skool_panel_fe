@@ -22,11 +22,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <Suspense fallback={<Loader />}>
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebar/>
         <SidebarInset>
-
           <PermissionInitializer />
-
           {/* This part only shows once PermissionInitializer finishes */}
           <header className="shadow flex h-16 shrink-0 items-center gap-2 justify-between bg-sidebar">
             <div className="flex items-center gap-2 px-4">
@@ -51,7 +49,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </header>
 
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 bg-background">
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 bg-linear-to-br from-white to-slate-50">
             {children}
           </div>
 
